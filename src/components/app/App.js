@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
-import './App.css';
+import React from 'react';
 
-class App extends Component {
+import './App.css';
+import SearchBar from '../searchBar/SearchBar';
+import SearchResults from '../searchResults/SearchResults';
+import Playlist from '../playlist/Playlist';
+
+class App extends React.Component {
   render() {
     return (
       <div>
