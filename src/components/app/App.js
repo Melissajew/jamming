@@ -6,6 +6,21 @@ import SearchResults from '../searchResults/SearchResults';
 import Playlist from '../playlist/Playlist';
 
 class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.addTrack = this.addTrack.bind(this);
+    this.state = {
+      searchResults: ['name', 'artist', 'album', 'id'],
+      playlistName: "New Playlist",
+      playlistTracks: []
+    }
+  }
+  addTrack(track) {
+    if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)){
+      let newPlaylistTracks = this.state.playlistTracks.concat(track);
+      this.setState({playlistTracks: newPlaylistTracks});
+    }
+  }
   render() {
     return (
       <div>
@@ -13,8 +28,8 @@ class App extends React.Component {
         <div className="App">
           //Add a SearchBar component
           <div className="App-playlist">
-            //Add a SearchResults component
-            //Add a Playlist component
+            <SearchResults searchResults = {this.state.searchResults} onAdd = {this.addTrack}/>
+            <Playlist playlistName = {this.state.playlistName} playlistTracks = {this.state.playlistTracks}/>
           </div>
         </div>
       </div>
